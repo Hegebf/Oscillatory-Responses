@@ -1,2 +1,2 @@
-# Testing Linear Responses
- Code used for Linear Response paper
+# Oscillatory Responses
+ Code used for the paper "Exploring global temperature oscillations using a generalised linear box model"
