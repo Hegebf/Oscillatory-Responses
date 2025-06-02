@@ -9,7 +9,7 @@ import xarray as xr
 from scipy import optimize
 
 def load_longrunmip_data(model, exp = 'abrupt2x', length_restriction = None):
-    directory = '../../longrunmip_data/'
+    directory = '../../other_data/longrunmip_data/'
     file_list = [ f.name for f in os.scandir(directory) if f.is_file()]
     file_list_namesplits = [file.rsplit("_") for file in file_list]
     files_model_names = [file_list_namesplits[k][1] for k in range(len(file_list_namesplits))]
@@ -30,11 +30,11 @@ def load_longrunmip_data(model, exp = 'abrupt2x', length_restriction = None):
 
 def find_members(model, exp, datatype = 'anomalies'):
     if datatype == 'anomalies':
-        directory = '../../Processed_data/Global_annual_anomalies/'
+        directory = '../../CMIP6-forcing/Processed_data/Global_annual_anomalies/'
     elif datatype == 'means':
-        directory = '../../Processed_data/Global_annual_means/'
+        directory = '../../CMIP6-forcing/Processed_data/Global_annual_means/'
     elif datatype == 'forcing':
-        directory = '../../Estimates/Transient_forcing_estimates/'
+        directory = '../../CMIP6-forcing/Estimates/Transient_forcing_estimates/'
     modelexpdirectory = os.path.join(directory, model, exp)
     filenames = [f.name for f in os.scandir(modelexpdirectory) if f.name not in ['.ipynb_checkpoints', '.DS_Store']]
 
@@ -44,7 +44,7 @@ def find_members(model, exp, datatype = 'anomalies'):
 
 def load_anom(model, exp, member, length_restriction = None):
     filename = model + '_' + exp + '_' + member + '_anomalies.csv'
-    file = os.path.join('../../Processed_data/Global_annual_anomalies/', model, exp, filename)
+    file = os.path.join('../../CMIP6-forcing/Processed_data/Global_annual_anomalies/', model, exp, filename)
     
     data = pd.read_csv(file, index_col=0)
     if model != 'AWI-CM-1-1-MR': # maybe not neccessary after updating the data archive?
